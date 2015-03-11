@@ -12,7 +12,7 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
         $this->blocks = array(
             'pageTitle' => array($this, 'block_pageTitle'),
             'siteDescription' => array($this, 'block_siteDescription'),
-            'stylesheet' => array($this, 'block_stylesheet'),
+            'stylesheets' => array($this, 'block_stylesheets'),
             'topImage' => array($this, 'block_topImage'),
             'contentTitle' => array($this, 'block_contentTitle'),
             'content' => array($this, 'block_content'),
@@ -47,17 +47,17 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
         echo "\">
 \t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 
-\t\t<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+
 \t\t";
         // line 14
-        $this->displayBlock('stylesheet', $context, $blocks);
-        // line 18
-        echo "\t\t
-\t</head>
+        $this->displayBlock('stylesheets', $context, $blocks);
+        // line 31
+        echo "\t</head>
 \t<body>        
 \t\t<header id=\"header\">
 \t\t\t<div class=\"top\">
 \t\t\t\t<div class=\"pos-center\">
+
 \t\t\t\t\t
 \t\t\t\t\t<a class=\"mobile-menu-trigger\" href=\"#\">
 \t\t\t\t\t\t<span class=\"bar\"></span>
@@ -68,43 +68,88 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
 \t\t\t\t\t<div class=\"menu\">
 \t\t\t\t\t\t<nav>
 \t\t\t\t\t\t\t<ul>
-\t\t\t\t\t\t\t\t<li><a href=\"#\">HOME</a></li>
-\t\t\t\t\t\t\t\t<li><a href=\"#\">O MNIE</a></li>
-\t\t\t\t\t\t\t\t<li><a href=\"#\">KONTAKT</a></li>
+\t\t\t\t\t\t\t\t";
+        // line 48
+        echo "\t\t\t\t\t\t\t\t";
+        // line 49
+        echo "\t\t\t\t\t\t\t\t";
+        // line 50
+        echo "\t\t\t\t\t\t\t\t";
+        echo $this->env->getExtension('air_blog_extension')->printMainMenu();
+        echo "
 \t\t\t\t\t\t\t</ul>
 \t\t\t\t\t\t</nav>
 
-\t\t\t\t\t\t<ul class=\"categories\">
-\t\t\t\t\t\t\t<li><a href=\"#\">Samoloty osobowe i pasażerskie</a></li>
-\t\t\t\t\t\t\t<li><a class=\"active\" href=\"#\">Samoloty odrzutowe</a></li>
-\t\t\t\t\t\t\t<li><a href=\"#\">Samoloty wojskowe</a></li>
-\t\t\t\t\t\t\t<li><a href=\"#\">Proy kosmiczne</a></li>
-\t\t\t\t\t\t\t<li><a href=\"#\">Tajne rozwiązania</a></li>
-\t\t\t\t\t\t</ul>
+\t\t\t\t\t\t";
+        // line 55
+        echo "\t\t\t\t\t\t\t";
+        // line 56
+        echo "\t\t\t\t\t\t\t";
+        // line 57
+        echo "\t\t\t\t\t\t\t";
+        // line 58
+        echo "\t\t\t\t\t\t\t";
+        // line 59
+        echo "\t\t\t\t\t\t\t";
+        // line 60
+        echo "\t\t\t\t\t\t";
+        // line 61
+        echo "\t\t\t\t\t\t";
+        echo $this->env->getExtension('air_blog_extension')->printCategoriesList();
+        echo "
 \t\t\t\t\t\t
-\t\t\t\t\t\t<!-- 
-\t\t\t\t\t\t<div class=\"user-panel\">
-\t\t\t\t\t\t\t<span class=\"user-name\">Zalogowany jako <a href=\"#\">macq</a></span>
-\t\t\t\t\t\t\t<a class=\"btn-green\" href=\"#\">Wyloguj</a>
-\t\t\t\t\t\t</div>
-\t\t\t\t\t\t -->
-\t\t\t\t\t\t
-\t\t\t\t\t\t<div class=\"user-panel\">
-\t\t\t\t\t\t\t<div class=\"btn-group\">
-\t\t\t\t\t\t\t\t<a class=\"btn-green\" href=\"#\">Zaloguj</a>
-\t\t\t\t\t\t\t\t<a class=\"btn-green\" href=\"#\">Zarejestruj</a>
+\t\t\t\t\t\t";
+        // line 64
+        echo "\t\t\t\t\t\t";
+        if ($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array())) {
+            // line 65
+            echo "\t\t\t\t\t\t\t<div class=\"user-panel\">
+\t\t\t\t\t\t\t\t<span class=\"user-name\">Zalogowany jako <a href=\"";
+            // line 66
+            echo $this->env->getExtension('routing')->getPath("user_accountSettings");
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "username", array()), "html", null, true);
+            echo "</a></span>
+\t\t\t\t\t\t\t\t<a class=\"btn-green\" href=\"";
+            // line 67
+            echo $this->env->getExtension('routing')->getPath("_logout");
+            echo "\">Wyloguj</a>
 \t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t</div> 
-\t\t\t\t\t   
+\t\t\t\t\t\t";
+        } else {
+            // line 70
+            echo "
+\t\t\t\t\t\t\t<div class=\"user-panel\">
+\t\t\t\t\t\t\t\t<div class=\"btn-group\">
+\t\t\t\t\t\t\t\t\t";
+            // line 73
+            $context["loginUrl"] = $this->env->getExtension('routing')->getPath("blog_login");
+            // line 74
+            echo "\t\t\t\t\t\t\t\t\t<a class=\"btn-green\" href=\"";
+            echo twig_escape_filter($this->env, (isset($context["loginUrl"]) ? $context["loginUrl"] : $this->getContext($context, "loginUrl")), "html", null, true);
+            echo "\">Zaloguj</a>
+\t\t\t\t\t\t\t\t\t<a class=\"btn-green\" href=\"";
+            // line 75
+            echo twig_escape_filter($this->env, (isset($context["loginUrl"]) ? $context["loginUrl"] : $this->getContext($context, "loginUrl")), "html", null, true);
+            echo "\">Zarejestruj</a>
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t</div>
+
+\t\t\t\t\t\t";
+        }
+        // line 80
+        echo "
+
+
 \t\t\t\t\t</div>
 \t\t\t\t\t<div class=\"clearfix\"></div>
 \t\t\t\t</div>
 \t\t\t</div>
 
 \t\t\t";
-        // line 67
+        // line 88
         $this->displayBlock('topImage', $context, $blocks);
-        // line 82
+        // line 103
         echo "\t\t</header>
 
 \t\t<div id=\"main\">
@@ -112,46 +157,59 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
 \t\t\t<div class=\"header\">
 \t\t\t\t<div class=\"pos-center\">
 \t\t\t\t\t<h2 class=\"left-side\">";
-        // line 88
+        // line 109
         $this->displayBlock('contentTitle', $context, $blocks);
         echo "</h2>
 
 \t\t\t\t\t";
-        // line 90
+        // line 111
         if ( !array_key_exists("hideSerch", $context)) {
-            // line 91
-            echo "\t\t\t\t\t\t<form class=\"right-side\" action=\"#\">
+            // line 112
+            echo "\t\t\t\t\t\t<form class=\"right-side\" action=\"";
+            echo $this->env->getExtension('routing')->getPath("blog_search");
+            echo "\">
 \t\t\t\t\t\t\t<input type=\"text\" name=\"search\" placeholder=\"Wyszukaj\">
+
 \t\t\t\t\t\t</form>
 \t\t\t\t\t";
         }
-        // line 95
+        // line 117
         echo "\t\t\t\t</div>
 \t\t\t</div>
 
 \t\t\t<div class=\"content\">
 \t\t\t\t<div class=\"pos-center\">
 \t\t\t\t\t<div class=\"left-side\">
-\t\t\t\t\t\t
+
 \t\t\t\t\t\t";
-        // line 102
+        // line 124
         $this->displayBlock('content', $context, $blocks);
-        // line 185
-        echo "\t\t\t\t\t
+        // line 207
+        echo "\t\t\t\t\t</div> <!-- .left-side -->
 \t\t\t\t\t";
-        // line 186
+        // line 208
         if ( !array_key_exists("hideSidebar", $context)) {
-            // line 187
+            // line 209
             echo "\t\t\t\t\t\t<div class=\"right-side sidebar\">
 \t\t\t\t\t\t\t<div class=\"menu\">
 \t\t\t\t\t\t\t\t<h3>Kategorie</h3>
-\t\t\t\t\t\t\t\t<ul>
-\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Samoloty osobowe i pasażerskie</a></li>
-\t\t\t\t\t\t\t\t\t<li><a class=\"active\" href=\"#\">Samoloty odrzutowe</a></li>
-\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Samoloty wojskowe</a></li>
-\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Promy kosmiczne</a></li>
-\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Tajne rozwiązania</a></li>
-\t\t\t\t\t\t\t\t</ul>
+\t\t\t\t\t\t\t\t";
+            // line 213
+            echo "\t\t\t\t\t\t\t\t\t";
+            // line 214
+            echo "\t\t\t\t\t\t\t\t\t";
+            // line 215
+            echo "\t\t\t\t\t\t\t\t\t";
+            // line 216
+            echo "\t\t\t\t\t\t\t\t\t";
+            // line 217
+            echo "\t\t\t\t\t\t\t\t\t";
+            // line 218
+            echo "\t\t\t\t\t\t\t\t";
+            // line 219
+            echo "\t\t\t\t\t\t\t\t";
+            echo $this->env->getExtension('air_blog_extension')->printCategoriesList();
+            echo "
 \t\t\t\t\t\t\t</div>
 
 \t\t\t\t\t\t\t<div class=\"tag-cloud\">
@@ -182,7 +240,7 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
 \t\t\t\t\t\t</div> <!-- .right-side -->
 \t\t\t\t\t";
         }
-        // line 226
+        // line 249
         echo "\t\t\t\t</div> <!-- .content -->
 
 \t\t\t\t<div class=\"clearfix\"></div>
@@ -192,12 +250,23 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
 \t\t<footer id=\"footer\">
 \t\t\t<div class=\"top\">
 \t\t\t\t<div class=\"pos-center\">
-\t\t\t\t\t<ul>
-\t\t\t\t\t\t<li><a href=\"#\">Home</a></li>
-\t\t\t\t\t\t<li><a href=\"#\">O mnie</a></li>
-\t\t\t\t\t\t<li><a href=\"#\">Kontakt</a></li>
-\t\t\t\t\t\t<li><a href=\"#\">Admin</a></li>
-\t\t\t\t\t</ul>
+\t\t\t\t\t";
+        // line 259
+        echo "\t\t\t\t\t\t";
+        // line 260
+        echo "\t\t\t\t\t\t";
+        // line 261
+        echo "\t\t\t\t\t\t";
+        // line 262
+        echo "\t\t\t\t\t\t";
+        // line 263
+        echo "\t\t\t\t\t";
+        // line 264
+        echo "
+\t\t\t\t\t";
+        // line 265
+        echo $this->env->getExtension('air_blog_extension')->printMainMenu();
+        echo "
 \t\t\t\t</div>
 \t\t\t</div>
 
@@ -212,9 +281,9 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
 \t\t</footer>
 
 \t\t";
-        // line 254
+        // line 279
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 260
+        // line 285
         echo "\t</body>
 </html>
 ";
@@ -231,37 +300,61 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
     }
 
     // line 14
-    public function block_stylesheet($context, array $blocks = array())
+    public function block_stylesheets($context, array $blocks = array())
     {
         // line 15
-        echo "\t\t\t<link rel=\"stylesheet\" href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/css/normalize.css"), "html", null, true);
-        echo "\">
-\t\t\t<link rel=\"stylesheet\" href=\"";
-        // line 16
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/css/main.css"), "html", null, true);
-        echo "\">
-\t\t";
+        echo "\t\t\t<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+
+\t\t\t";
+        // line 17
+        if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
+            // asset "63fad83_0"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_63fad83_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/assets/css/compiled_normalize_1.css");
+            // line 23
+            echo "\t\t\t<link rel=\"stylesheet\" href=\"";
+            echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
+            echo "\">
+\t\t\t";
+            // asset "63fad83_1"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_63fad83_1") : $this->env->getExtension('assets')->getAssetUrl("_controller/assets/css/compiled_main_2.css");
+            echo "\t\t\t<link rel=\"stylesheet\" href=\"";
+            echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
+            echo "\">
+\t\t\t";
+        } else {
+            // asset "63fad83"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_63fad83") : $this->env->getExtension('assets')->getAssetUrl("_controller/assets/css/compiled.css");
+            echo "\t\t\t<link rel=\"stylesheet\" href=\"";
+            echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
+            echo "\">
+\t\t\t";
+        }
+        unset($context["asset_url"]);
+        // line 25
+        echo "
+\t\t\t";
+        // line 30
+        echo "\t\t";
     }
 
-    // line 67
+    // line 88
     public function block_topImage($context, array $blocks = array())
     {
-        // line 68
+        // line 89
         echo "\t\t\t\t<div class=\"slider\">
 \t\t\t\t\t<div class=\"viewport\">
 \t\t\t\t\t\t<div class=\"slides-container\">
 
 \t\t\t\t\t\t\t<div style=\"background-image: url('";
-        // line 72
+        // line 93
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/images/error404.png"), "html", null, true);
         echo "')\" class=\"slide\"></div>
 \t\t\t\t\t\t\t<div style=\"background-image: url('";
-        // line 73
+        // line 94
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/images/slide-2.jpg"), "html", null, true);
         echo "')\" class=\"slide\"></div>
 \t\t\t\t\t\t\t<div style=\"background-image: url('";
-        // line 74
+        // line 95
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/images/slide-3.jpg"), "html", null, true);
         echo "')\" class=\"slide\"></div>
 \t\t\t\t\t\t</div>
@@ -273,15 +366,15 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
 \t\t\t";
     }
 
-    // line 88
+    // line 109
     public function block_contentTitle($context, array $blocks = array())
     {
     }
 
-    // line 102
+    // line 124
     public function block_content($context, array $blocks = array())
     {
-        // line 103
+        // line 125
         echo "\t\t\t\t\t\t\t<article class=\"post\">
 \t\t\t\t\t\t\t\t<header>
 \t\t\t\t\t\t\t\t\t<h1>Suspendisse molestie vivamus fermentum</h1>
@@ -308,7 +401,7 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
 \t\t\t\t\t\t\t\t\t</div>
 
 \t\t\t\t\t\t\t\t\t<img src=\"";
-        // line 128
+        // line 150
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/images/default-thumbnail.jpg"), "html", null, true);
         echo "\" alt=\"\">
 \t\t\t\t\t\t\t\t</div>
@@ -365,27 +458,27 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
 \t\t\t\t\t\t\t\t\t<li><a href=\"#\">4</a></li>
 \t\t\t\t\t\t\t\t</ul>
 \t\t\t\t\t\t\t</div> <!-- .pagination -->
-\t\t\t\t\t\t</div> <!-- .left-side -->
+
 \t\t\t\t\t\t";
     }
 
-    // line 254
+    // line 279
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 255
+        // line 280
         echo "\t\t\t<script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/js/vendor/jquery-1.10.2.min.js"), "html", null, true);
         echo "\"></script>
 \t\t\t<script src=\"";
-        // line 256
+        // line 281
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/js/vendor/jquery.responsiSlider.js"), "html", null, true);
         echo "\"></script>
 \t\t\t<script src=\"";
-        // line 257
+        // line 282
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/js/plugins.js"), "html", null, true);
         echo "\"></script>
 \t\t\t<script src=\"";
-        // line 258
+        // line 283
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/airblog/js/main.js"), "html", null, true);
         echo "\"></script>
 \t\t";
@@ -403,6 +496,6 @@ class __TwigTemplate_3f018e4de008ff9808ea0aab953d59fa95893e2fd535cd76760ae0614d7
 
     public function getDebugInfo()
     {
-        return array (  389 => 258,  385 => 257,  381 => 256,  376 => 255,  373 => 254,  312 => 128,  285 => 103,  282 => 102,  277 => 88,  265 => 74,  261 => 73,  257 => 72,  251 => 68,  248 => 67,  242 => 16,  237 => 15,  234 => 14,  229 => 10,  224 => 7,  218 => 260,  216 => 254,  186 => 226,  145 => 187,  143 => 186,  140 => 185,  138 => 102,  129 => 95,  123 => 91,  121 => 90,  116 => 88,  108 => 82,  106 => 67,  55 => 18,  53 => 14,  46 => 10,  42 => 9,  39 => 8,  34 => 7,  26 => 1,);
+        return array (  482 => 283,  478 => 282,  474 => 281,  469 => 280,  466 => 279,  405 => 150,  378 => 125,  375 => 124,  370 => 109,  358 => 95,  354 => 94,  350 => 93,  344 => 89,  341 => 88,  337 => 30,  334 => 25,  314 => 23,  310 => 17,  306 => 15,  303 => 14,  298 => 10,  293 => 7,  287 => 285,  285 => 279,  268 => 265,  265 => 264,  263 => 263,  261 => 262,  259 => 261,  257 => 260,  255 => 259,  244 => 249,  210 => 219,  208 => 218,  206 => 217,  204 => 216,  202 => 215,  200 => 214,  198 => 213,  193 => 209,  191 => 208,  188 => 207,  186 => 124,  177 => 117,  168 => 112,  166 => 111,  161 => 109,  153 => 103,  151 => 88,  141 => 80,  133 => 75,  128 => 74,  126 => 73,  121 => 70,  115 => 67,  109 => 66,  106 => 65,  103 => 64,  97 => 61,  95 => 60,  93 => 59,  91 => 58,  89 => 57,  87 => 56,  85 => 55,  77 => 50,  75 => 49,  73 => 48,  55 => 31,  53 => 14,  46 => 10,  42 => 9,  39 => 8,  34 => 7,  26 => 1,);
     }
 }

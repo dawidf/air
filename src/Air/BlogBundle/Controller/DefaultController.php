@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/dupa")
+     * @Route("/imie")
      * @Template()
      */
     public function indexAction()

@@ -3,20 +3,21 @@
 security:
     # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        Common\UserBundle\Entity\User:
+            algorithm: bcrypt
 
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_EDITOR:    ROLE_USER
+        ROLE_ADMIN:       [ROLE_EDITOR, ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_EDITOR, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        blog_users:
+            entity:
+                class: CommonUserBundle:User
+                property: username
 
     # the main part of the security, where you can set up firewalls
     # for specific sections of your app
@@ -25,22 +26,31 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        # the login page has to be accessible for everybody
-        demo_login:
-            pattern:  ^/demo/secured/login$
-            security: false
+
 
         # secures part of the application
-        demo_secured_area:
-            pattern:    ^/demo/secured/
+        blog_security:
+            switch_user: true
+            pattern:    ^/
+            anonymous: ~
             # it's important to notice that in this case _demo_security_check and _demo_login
             # are route names and that they are specified in the AcmeDemoBundle
             form_login:
-                check_path: _demo_security_check
-                login_path: _demo_login
+                check_path: _check_path
+                login_path: blog_login
+                default_target_path: blog_index
+                username_parameter: login[username]
+                password_parameter: login[password]
             logout:
-                path:   _demo_logout
-                target: _demo
+                path:   _logout
+                #przekierowanie po wylogowaniu na strone główną
+                target: blog_index
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000
+                path:     /
+                domain:   ~
+                remember_me_parameter: login[remember_me]
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
@@ -50,3 +60,5 @@ security:
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        #ścieżki dostępne tylko po zalogowaniu
+        - { path: ^/account-settings, roles: ROLE_USER }

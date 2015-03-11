@@ -1,0 +1,10 @@
+air_admin_panel:
+    resource: "@AirAdminBundle/Controller/AdminPanelController.php"
+    type:     annotation
+    prefix:   /admin-panel
+
+#air_blog_posts:
+#    resource: "@AirBlogBundle/Controller/PostsController.php"
+#    type:     annotation
+#    prefix:   /
+

@@ -1,0 +1,12 @@
+<ul>
+    {% for name,route in mainMenu %}
+        {# dodaje active w aktualnej zakładce #}
+    {% if app.request.get('_route') == route %}
+        <li class="active">
+    {% else %}
+        <li>
+    {% endif %}
+            <a href="{{ path(route) }}">{{ name }}</a>
+        </li>
+    {% endfor %}
+</ul>

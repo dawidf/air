@@ -1,3 +1,11 @@
+air_admin:
+    resource: "@AirAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+common_user:
+    resource: "@CommonUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 air_blog:
     resource: "@AirBlogBundle/Resources/config/routing.yml"
     prefix:   /

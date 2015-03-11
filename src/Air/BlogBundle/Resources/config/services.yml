@@ -1,0 +1,12 @@
+parameters:
+#    air.blog.example.class: Air\BlogBundle\Example
+
+services:
+    air_blog.twig.extension.blog:
+        class: Air\BlogBundle\Twig\Extension\BlogExtension
+        arguments: ["@doctrine"]
+#        calls:
+#            - [setService, [@service_id]]
+        tags:
+            - { name: twig.extension }
+#            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

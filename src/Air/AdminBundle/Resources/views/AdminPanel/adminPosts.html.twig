@@ -1,0 +1,16 @@
+
+
+<table border="1">
+    <tr>
+        <td>title</td>
+        <td>content</td>
+    </tr>
+
+    {% for post in posts %}
+
+        <tr>
+            <td>{{ post.title }}</td>
+            <td>{{ post.content }}</td>
+        </tr>
+    {% endfor %}
+</table>

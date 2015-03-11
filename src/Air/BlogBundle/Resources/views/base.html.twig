@@ -10,17 +10,30 @@
 		<meta name="description" content="{% block siteDescription %}{% endblock %}">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
-		{% block stylesheet %}
-			<link rel="stylesheet" href="{{ asset('bundles/airblog/css/normalize.css') }}">
-			<link rel="stylesheet" href="{{ asset('bundles/airblog/css/main.css') }}">
+
+		{% block stylesheets %}
+			<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+
+			{% stylesheets
+			'bundles/airblog/css/normalize.css'
+			'bundles/airblog/css/main.css'
+			filter='cssrewrite,?yui_css'
+			output='assets/css/compiled.css'
+			%}
+			<link rel="stylesheet" href="{{ asset_url }}">
+			{% endstylesheets %}
+
+			{#
+            <link rel="stylesheet" href="{{ asset('bundles/airblog/css/normalize.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/airblog/css/main.css') }}">
+            #}
 		{% endblock %}
-		
 	</head>
 	<body>        
 		<header id="header">
 			<div class="top">
 				<div class="pos-center">
+
 					
 					<a class="mobile-menu-trigger" href="#">
 						<span class="bar"></span>
@@ -31,34 +44,42 @@
 					<div class="menu">
 						<nav>
 							<ul>
-								<li><a href="#">HOME</a></li>
-								<li><a href="#">O MNIE</a></li>
-								<li><a href="#">KONTAKT</a></li>
+								{#<li><a href="#">HOME</a></li>#}
+								{#<li><a href="#">O MNIE</a></li>#}
+								{#<li><a href="#">KONTAKT</a></li>#}
+								{{ print_main_menu() }}
 							</ul>
 						</nav>
 
-						<ul class="categories">
-							<li><a href="#">Samoloty osobowe i pasażerskie</a></li>
-							<li><a class="active" href="#">Samoloty odrzutowe</a></li>
-							<li><a href="#">Samoloty wojskowe</a></li>
-							<li><a href="#">Proy kosmiczne</a></li>
-							<li><a href="#">Tajne rozwiązania</a></li>
-						</ul>
+						{#<ul class="categories">#}
+							{#<li><a href="#">Samoloty osobowe i pasażerskie</a></li>#}
+							{#<li><a class="active" href="#">Samoloty odrzutowe</a></li>#}
+							{#<li><a href="#">Samoloty wojskowe</a></li>#}
+							{#<li><a href="#">Proy kosmiczne</a></li>#}
+							{#<li><a href="#">Tajne rozwiązania</a></li>#}
+						{#</ul>#}
+						{{ print_categories_list() }}
 						
-						<!-- 
-						<div class="user-panel">
-							<span class="user-name">Zalogowany jako <a href="#">macq</a></span>
-							<a class="btn-green" href="#">Wyloguj</a>
-						</div>
-						 -->
-						
-						<div class="user-panel">
-							<div class="btn-group">
-								<a class="btn-green" href="#">Zaloguj</a>
-								<a class="btn-green" href="#">Zarejestruj</a>
+						{# Jeśli jest zalogowany #}
+						{% if app.user %}
+							<div class="user-panel">
+								<span class="user-name">Zalogowany jako <a href="{{ path('user_accountSettings') }}">{{ app.user.username }}</a></span>
+								<a class="btn-green" href="{{ path('_logout') }}">Wyloguj</a>
 							</div>
-						</div> 
-					   
+						{% else %}
+
+							<div class="user-panel">
+								<div class="btn-group">
+									{% set loginUrl = path('blog_login') %}
+									<a class="btn-green" href="{{ loginUrl }}">Zaloguj</a>
+									<a class="btn-green" href="{{ loginUrl }}">Zarejestruj</a>
+								</div>
+							</div>
+
+						{% endif %}
+
+
+
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -88,8 +109,9 @@
 					<h2 class="left-side">{% block contentTitle %}{% endblock %}</h2>
 
 					{% if hideSerch is not defined %}
-						<form class="right-side" action="#">
+						<form class="right-side" action="{{ path('blog_search') }}">
 							<input type="text" name="search" placeholder="Wyszukaj">
+
 						</form>
 					{% endif %}
 				</div>
@@ -98,7 +120,7 @@
 			<div class="content">
 				<div class="pos-center">
 					<div class="left-side">
-						
+
 						{% block content %}
 							<article class="post">
 								<header>
@@ -180,20 +202,21 @@
 									<li><a href="#">4</a></li>
 								</ul>
 							</div> <!-- .pagination -->
-						</div> <!-- .left-side -->
+
 						{% endblock %}
-					
+					</div> <!-- .left-side -->
 					{% if hideSidebar is not defined %}
 						<div class="right-side sidebar">
 							<div class="menu">
 								<h3>Kategorie</h3>
-								<ul>
-									<li><a href="#">Samoloty osobowe i pasażerskie</a></li>
-									<li><a class="active" href="#">Samoloty odrzutowe</a></li>
-									<li><a href="#">Samoloty wojskowe</a></li>
-									<li><a href="#">Promy kosmiczne</a></li>
-									<li><a href="#">Tajne rozwiązania</a></li>
-								</ul>
+								{#<ul>#}
+									{#<li><a href="#">Samoloty osobowe i pasażerskie</a></li>#}
+									{#<li><a class="active" href="#">Samoloty odrzutowe</a></li>#}
+									{#<li><a href="#">Samoloty wojskowe</a></li>#}
+									{#<li><a href="#">Promy kosmiczne</a></li>#}
+									{#<li><a href="#">Tajne rozwiązania</a></li>#}
+								{#</ul>#}
+								{{ print_categories_list() }}
 							</div>
 
 							<div class="tag-cloud">
@@ -232,12 +255,14 @@
 		<footer id="footer">
 			<div class="top">
 				<div class="pos-center">
-					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">O mnie</a></li>
-						<li><a href="#">Kontakt</a></li>
-						<li><a href="#">Admin</a></li>
-					</ul>
+					{#<ul>#}
+						{#<li><a href="#">Home</a></li>#}
+						{#<li><a href="#">O mnie</a></li>#}
+						{#<li><a href="#">Kontakt</a></li>#}
+						{#<li><a href="#">Admin</a></li>#}
+					{#</ul>#}
+
+					{{ print_main_menu() }}
 				</div>
 			</div>
 

@@ -9,17 +9,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class PagesController extends Controller {
 	
 	/**
-	 * @Route("o-mnie")
+	 * @Route("o-mnie", name="o_mnie")
 	 * @Template()
 	 */
 	function aboutAction() {
 		return array ();
 	}
 	/**
-	 * @Route("kontakt")
+	 * @Route("kontakt", name="kontakt")
 	 * @Template()
 	 */
 	function kontaktAction() {
-		return array ();
+
+
+		$cos = "nie wiemco to jest";
+		return array(
+			'cos' => $cos
+		);
 	}
 }
